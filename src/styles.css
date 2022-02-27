@@ -1,0 +1,30 @@
+.input-area {
+  background-color: #6acafa;
+  padding: 4px 4px;
+  margin: 4px;
+}
+
+.incomplete-area {
+  background-color: #ffff99;
+  margin: 4px;
+}
+
+.complete-area {
+  background-color: #ffcc66;
+}
+
+.title {
+  text-align: center;
+  color: #2c2b2b;
+}
+
+button {
+  cursor: pointer;
+  background-color: #ffffff;
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  padding-bottom: 4px;
+}
