@@ -6,8 +6,8 @@ import { CompleteTODO } from "./components/CompleteTODO";
 
 export const TodoApp = () => {
   const [inputText, setInputText] = useState("");
-  const [incompleteTodo, setIncompleteTodo] = useState(["todo1", "todo2"]);
-  const [completeTodo, setCompleteTodo] = useState(["todo3"]);
+  const [incompleteTodo, setIncompleteTodo] = useState([]);
+  const [completeTodo, setCompleteTodo] = useState([]);
 
   const onClickChangeText = (event) => setInputText(event.target.value);
 
@@ -16,6 +16,10 @@ export const TodoApp = () => {
     const newIncompTODO = [...incompleteTodo, inputText];
     setIncompleteTodo(newIncompTODO);
     setInputText("");
+  };
+
+  const onClickSave = () => {
+    return alert("OK");
   };
 
   const onClickDel = (index, whichTODO) => {
@@ -51,6 +55,7 @@ export const TodoApp = () => {
         onChange={onClickChangeText}
         clickAdd={onClickAdd}
         disabled={completeTodo.length + incompleteTodo.length >= 5}
+        onClickSave={onClickSave}
       />
       {completeTodo.length + incompleteTodo.length >= 5 && (
         <p style={{ color: "red" }}>TODOリストを5件以上作成できません</p>
