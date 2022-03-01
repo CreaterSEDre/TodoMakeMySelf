@@ -1,8 +1,10 @@
 .input-area {
   background-color: #6acafa;
-  padding: 4px 4px;
-  margin: 4px;
-  padding-left: 20px;
+  padding: 4px;
+  padding-left: 10px;
+  height: 30px;
+  width: 385px;
+  display: table-cell;
 }
 
 .incomplete-area {

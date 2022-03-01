@@ -13,9 +13,7 @@ export const InputTODO = (props) => {
       <button onClick={clickAdd} disabled={disabled}>
         追加
       </button>
-      <button style={{ marginLeft: "95px" }} onClick={onClickSave}>
-        保存
-      </button>
+      <button onClick={onClickSave}>保存</button>
     </div>
   );
 };
