@@ -9,8 +9,35 @@ export const TodoApp = () => {
   const [inputText, setInputText] = useState("");
   const [incompleteTodo, setIncompleteTodo] = useState([]);
   const [completeTodo, setCompleteTodo] = useState([]);
+  const [loginFlg, setLoginFlg] = useState("");
+  const [loginId, setLoginId] = useState("");
+  const [password, setPassword] = useState("");
 
   const onClickChangeText = (event) => setInputText(event.target.value);
+  const onChangeLoginId = (event) => setLoginId(event.target.value);
+  const onChangePassword = (event) => setPassword(event.target.value);
+
+  const LoginCheck = (loginId, password) => {
+    if (loginId !== "" && password !== "") {
+      //上手くいかない
+      setLoginFlg("1");
+      console.log(loginFlg);
+      if (loginFlg === "0") {
+        alert("ログインID、またはパスワードが正しくありません。");
+      } else {
+        alert("ログインに成功しました！！");
+      }
+      setLoginId("");
+      setPassword("");
+    }
+  };
+
+  // const Logout = () => {
+  //   alert("LogoutSuccess!!");
+  //   setLoginFlg(true);
+  // };
+
+  // useEffect(() => {});
 
   const onClickAdd = () => {
     if (inputText === "") return;
@@ -51,7 +78,15 @@ export const TodoApp = () => {
 
   return (
     <>
-      <Login />
+      <Login
+        LoginCheck={LoginCheck}
+        // Logout={Logout}
+        loginId={loginId}
+        onChangeLoginId={onChangeLoginId}
+        password={password}
+        onChangePassword={onChangePassword}
+        loginFlg={loginFlg === "1"}
+      />
       <InputTODO
         todoText={inputText}
         onChange={onClickChangeText}

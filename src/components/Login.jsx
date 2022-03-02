@@ -4,24 +4,57 @@ const LoginStyle = {
   backgroundColor: "#66cdaa",
   padding: "8px",
   paddingBottom: "10px",
-  paddingTop: "10px",
-  margin: "2px"
+  margin: "2px",
+  marginBottom: "12px"
 };
 
-export const Login = () => {
+const NotLoginState = (loginFlg) => {
+  return !loginFlg;
+};
+
+export const Login = (props) => {
+  const {
+    LoginCheck,
+    // Logout,
+    loginId,
+    onChangeLoginId,
+    password,
+    onChangePassword,
+    loginFlg
+  } = props;
+
   return (
     <>
       <div style={LoginStyle}>
-        <div className="list-row">
-          <p>ログイン</p>
-          <tooltip tooltipText="test">
-            <button>?</button>
-          </tooltip>
-        </div>
-        <input type="text" placeholder="ログインIDを入力" />
+        <p className={"title"}>ログイン</p>
+        <div className="list-row"></div>
+        <input
+          type="text"
+          placeholder="ログインIDを入力"
+          value={loginId}
+          onChange={onChangeLoginId}
+          // disabled={() => NotLoginState(loginFlg)}
+        />
         <br />
         <br />
-        <input type="password" placeholder="パスワードを入力" />
+        <input
+          type="password"
+          placeholder="パスワードを入力"
+          value={password}
+          onChange={onChangePassword}
+          // disabled={() => NotLoginState(loginFlg)}
+        />
+        <button
+          onClick={() => LoginCheck(loginId, password)}
+          // disabled={() => NotLoginState(loginFlg)}
+        >
+          ログイン
+        </button>
+        <button
+        // onClick={Logout()} disabled={loginFlg}
+        >
+          ログアウト
+        </button>
       </div>
     </>
   );

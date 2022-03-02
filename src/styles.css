@@ -2,6 +2,7 @@
   background-color: #6acafa;
   padding: 4px;
   padding-left: 10px;
+  margin: 3px;
   height: 30px;
   width: 385px;
   display: table-cell;
@@ -22,8 +23,8 @@
 }
 
 .title {
-  text-align: center;
   color: #2c2b2b;
+  text-align: center;
 }
 
 .list-row {
