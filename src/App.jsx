@@ -9,7 +9,7 @@ export const TodoApp = () => {
   const [inputText, setInputText] = useState("");
   const [incompleteTodo, setIncompleteTodo] = useState([]);
   const [completeTodo, setCompleteTodo] = useState([]);
-  const [loginFlg, setLoginFlg] = useState("");
+  const [loginFlg, setLoginFlg] = useState("0");
   const [loginId, setLoginId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,26 +18,22 @@ export const TodoApp = () => {
   const onChangePassword = (event) => setPassword(event.target.value);
 
   const LoginCheck = (loginId, password) => {
-    if (loginId !== "" && password !== "") {
-      //上手くいかない
-      setLoginFlg("1");
-      console.log(loginFlg);
-      if (loginFlg === "0") {
-        alert("ログインID、またはパスワードが正しくありません。");
+    if (loginFlg === "0") {
+      if (loginId === "" || password === "") {
+        alert("ログインID、パスワードが正しく入力されていません。");
       } else {
-        alert("ログインに成功しました！！");
+        //DBでログインチェック
+        setLoginFlg("1");
+        alert("ログインに成功しました！！！！");
       }
+    } else {
+      //ログアウト処理
+      setLoginFlg("0");
+      alert("ログアウトしました。");
       setLoginId("");
       setPassword("");
     }
   };
-
-  // const Logout = () => {
-  //   alert("LogoutSuccess!!");
-  //   setLoginFlg(true);
-  // };
-
-  // useEffect(() => {});
 
   const onClickAdd = () => {
     if (inputText === "") return;
@@ -47,7 +43,17 @@ export const TodoApp = () => {
   };
 
   const onClickSave = () => {
-    return alert("OK");
+    alert("OK");
+  };
+
+  const onClickPullSaveData = (loginId, password) => {
+    //eslint-disable-next-line
+    if (confirm("現在表示のTODOリストが削除されますがよろしいですか？")) {
+      //DBにSELECT処理
+      alert(loginId + "" + password);
+    } else {
+      alert("処理をキャンセルしました。");
+    }
   };
 
   const onClickDel = (index, whichTODO) => {
@@ -80,7 +86,6 @@ export const TodoApp = () => {
     <>
       <Login
         LoginCheck={LoginCheck}
-        // Logout={Logout}
         loginId={loginId}
         onChangeLoginId={onChangeLoginId}
         password={password}
@@ -93,6 +98,10 @@ export const TodoApp = () => {
         clickAdd={onClickAdd}
         disabled={completeTodo.length + incompleteTodo.length >= 5}
         onClickSave={onClickSave}
+        loginFlg={loginFlg === "1"}
+        onClickPullSaveData={onClickPullSaveData}
+        loginId={loginId}
+        password={password}
       />
       {completeTodo.length + incompleteTodo.length >= 5 && (
         <p style={{ color: "red" }}>TODOリストを5件以上作成できません</p>

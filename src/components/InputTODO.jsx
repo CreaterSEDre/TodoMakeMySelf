@@ -1,7 +1,17 @@
 import React from "react";
 
 export const InputTODO = (props) => {
-  const { todoText, onChange, clickAdd, disabled, onClickSave } = props;
+  const {
+    todoText,
+    onChange,
+    clickAdd,
+    disabled,
+    onClickSave,
+    loginFlg,
+    onClickPullSaveData,
+    loginId,
+    password
+  } = props;
   return (
     <div className="input-area">
       <input
@@ -13,7 +23,12 @@ export const InputTODO = (props) => {
       <button onClick={clickAdd} disabled={disabled}>
         追加
       </button>
-      <button onClick={onClickSave}>保存</button>
+      {loginFlg && <button onClick={onClickSave}>保存</button>}
+      {loginFlg && (
+        <button onClick={() => onClickPullSaveData(loginId, password)}>
+          保存データを表示
+        </button>
+      )}
     </div>
   );
 };

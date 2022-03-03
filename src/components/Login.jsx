@@ -5,17 +5,13 @@ const LoginStyle = {
   padding: "8px",
   paddingBottom: "10px",
   margin: "2px",
-  marginBottom: "12px"
-};
-
-const NotLoginState = (loginFlg) => {
-  return !loginFlg;
+  marginBottom: "12px",
+  width: "380px"
 };
 
 export const Login = (props) => {
   const {
     LoginCheck,
-    // Logout,
     loginId,
     onChangeLoginId,
     password,
@@ -33,7 +29,7 @@ export const Login = (props) => {
           placeholder="ログインIDを入力"
           value={loginId}
           onChange={onChangeLoginId}
-          // disabled={() => NotLoginState(loginFlg)}
+          disabled={loginFlg}
         />
         <br />
         <br />
@@ -42,19 +38,22 @@ export const Login = (props) => {
           placeholder="パスワードを入力"
           value={password}
           onChange={onChangePassword}
-          // disabled={() => NotLoginState(loginFlg)}
+          disabled={loginFlg}
         />
-        <button
-          onClick={() => LoginCheck(loginId, password)}
-          // disabled={() => NotLoginState(loginFlg)}
-        >
-          ログイン
-        </button>
-        <button
-        // onClick={Logout()} disabled={loginFlg}
-        >
-          ログアウト
-        </button>
+        {loginFlg || (
+          <button
+            onClick={() => LoginCheck(loginId, password)}
+            // disabled={() => NotLoginState(loginFlg)}
+          >
+            ログイン
+          </button>
+        )}
+
+        {loginFlg && (
+          <button onClick={() => LoginCheck(loginId, password)}>
+            ログアウト
+          </button>
+        )}
       </div>
     </>
   );
